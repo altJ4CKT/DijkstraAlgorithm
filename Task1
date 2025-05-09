@@ -1,0 +1,37 @@
+graph = {
+           'A': {'B':8, 'C':5},
+           'B': {'A':6, 'D':1},
+           'C': {'A':12, 'D':6, 'E':9},
+           'D': {'C':6, 'B':3, 'E':2},
+           'E': {'C':9, 'D':2}
+           }
+
+# Here are few lines  of code
+currentNode = input("Enter Current Node")
+print(graph[currentNode]) # prints a dictionary that has the neighbours with cost.
+
+neighbour = input(" Enter neighbour node ")
+print(graph[currentNode][neighbour]) # prints the cost to the neighbour
+
+
+# Challenge 1
+
+# 1. Draw the graph which is represented by the dictionary above
+# 2. What type of graph is this? 
+#       (i)   weighted and directed,
+#       (ii)  weighted and undirected, 
+#       (iii) unweighted and directed, 
+#       (iv)  unwaited and undirected? 
+
+#challenge 2:
+def shortestDistance(start, end, via):
+    if start not in graph or end not in graph or via not in graph:
+        return "Invalid nodes."
+    
+    if via not in graph[start] or end not in graph[via]:
+        return "Path does not exist."
+    
+    total_cost = graph[start][via] + graph[via][end]
+    print(f"The total cost from {start} to {end} via {via} is {total_cost}.")
+
+shortestDistance('A', 'D', 'C')
